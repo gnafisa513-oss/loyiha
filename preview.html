@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shod Mebel — Premium Oshxona Mebeli Konfiguratori va Kalkulyatori</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Outfit & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        inok: {
+                            50: '#f7f7f6',
+                            100: '#e6e4e0',
+                            200: '#d0ccc3',
+                            500: '#a39886',
+                            800: '#3a3630',
+                            900: '#1e1c19',
+                            teal: '#0e7490',
+                            tealHover: '#155e75',
+                            woodLight: '#e4d3b8',
+                            woodDark: '#b89467',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbfbfa;
+            color: #1e1c19;
+        }
+
+        /* Custom Slider Styling */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #0e7490;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(14, 116, 144, 0.3);
+            border: 2px solid #ffffff;
+            transition: transform 0.1s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #0e7490;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f0ec;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .visualizer-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+        }
+
+        .cabinet-wood-texture {
+            background: linear-gradient(135deg, #d7c3a5 0%, #c4ab89 100%);
+        }
+
+        .cabinet-white-texture {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f1ed 100%);
+        }
+
+        .cabinet-dark-texture {
+            background: linear-gradient(135deg, #3a3630 0%, #26231f 100%);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-stone-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <span
+                    class="font-heading font-extrabold text-2xl tracking-widest text-stone-900 flex items-center gap-1.5">
+                    SHod mebel <span
+                        class="text-xs font-sans tracking-normal px-2 py-0.5 bg-stone-100 text-stone-600 rounded font-semibold uppercase">Studio</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+                <a href="#konfigurator" class="hover:text-inok-teal transition">Konfigurator</a>
+                <a href="#proekty" class="hover:text-inok-teal transition">Loyihalar Katalogi</a>
+                <a href="#about" class="hover:text-inok-teal transition">Biz Haqimizda</a>
+                <a href="#faq" class="hover:text-inok-teal transition">Ko'p Beriladigan Savollar</a>
+            </nav>
+
+            <!-- CTA Action Buttons -->
+            <div class="flex items-center gap-3">
+                <a href="tel:+998901234567"
+                    class="hidden sm:flex items-center gap-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 px-3.5 py-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-phone text-inok-teal"></i>
+                    <span>+998 (90) 123-45-67</span>
+                </a>
+                <button onclick="scrollToCalculator()"
+                    class="bg-inok-teal hover:bg-inok-tealHover text-white px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm shadow-md shadow-teal-700/20 transition flex items-center gap-2 transform active:scale-95">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Buyurtma Berish</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO & CONFIGURATOR SECTION (INOK STYLE) -->
+    <main id="konfigurator" class="grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- Header Banner -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+            <span
+                class="px-3.5 py-1 bg-teal-50 border border-teal-200 text-inok-teal text-xs font-bold tracking-wider uppercase rounded-full inline-block mb-3">
+                Interaktiv 3D/2D Konfigurator
+            </span>
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-stone-900 leading-tight">
+                Ideal oshxonangizni yarating va instant smetani ko'ring
+            </h1>
+            <p class="text-stone-500 text-sm sm:text-base mt-2">
+                O'lcham, material va furnituralarni o'zgartiring — vizual modellashtirish va smeta real vaqtda
+                moslashadi.
+            </p>
+        </div>
+
+        <!-- MAIN INTERACTIVE WORKSPACE GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT & CENTER: Visualizer & Controls (7 Cols) -->
+            <div class="lg:col-span-7 space-y-6">
+
+                <!-- 1. DYNAMIC KITCHEN VISUALIZER BOX (INOK PREVIEW) -->
+                <div
+                    class="bg-white border border-stone-200/90 rounded-3xl p-6 visualizer-shadow relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Modulli 2D
+                                Vizualizatsiya</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="badge-layout"
+                                class="text-xs bg-stone-100 text-stone-700 font-semibold px-2.5 py-1 rounded-md border border-stone-200">To'g'ri
+                                (1 Qator)</span>
+                            <span id="badge-length"
+                                class="text-xs bg-teal-50 text-inok-teal font-bold px-2.5 py-1 rounded-md border border-teal-200">3.5
+                                metr</span>
+                        </div>
+                    </div>
+
+                    <!-- Canvas/SVG Render Area -->
+                    <div
+                        class="w-full bg-[#f6f5f2] rounded-2xl border border-stone-200/80 p-4 min-h-[260px] sm:min-h-[300px] flex items-center justify-center relative overflow-x-auto">
+                        <svg id="visualizer-svg" class="w-full h-64 sm:h-72 transition-all duration-300"
+                            viewBox="0 0 500 280">
+                            <!-- Dynamically generated via renderVisualizer() -->
+                        </svg>
+                    </div>
+
+                    <!-- Layout Presets Selector -->
+                    <div class="mt-5 grid grid-cols-3 gap-3">
+                        <button type="button" onclick="setLayout('straight')" id="btn-layout-straight"
+                            class="layout-btn py-2.5 px-3 bg-white border-2 border-inok-teal text-inok-teal rounded-xl text-center transition flex items-center justify-center gap-2 font-medium text-xs shadow-sm">
+                            <span class="text-sm font-bold">—</span>
+                            <span>To'g'ri shakl</span>
+                        </button>
+                        <button type="button" onclick="setLayout('l_shape')" id="btn-layout-l_shape"
+                            class="layout-btn py-2.5 px-3 bg-stone-50 border-2 border-stone-200 text-stone-600 rounded-xl text-center transition flex items-center justify-center gap-2 font-medium text-xs hover:border-stone-300">
+                            <i class="fa-solid fa-vector-square text-sm"></i>
+                            <span>Burchakli (L)</span>
+                        </button>
+                        <button type="button" onclick="setLayout('u_shape')" id="btn-layout-u_shape"
+                            class="layout-btn py-2.5 px-3 bg-stone-50 border-2 border-stone-200 text-stone-600 rounded-xl text-center transition flex items-center justify-center gap-2 font-medium text-xs hover:border-stone-300">
+                            <i class="fa-solid fa-square-full text-sm"></i>
+                            <span>P-simon (U)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. PARAMETERS & INPUT FORM -->
+                <div class="bg-white border border-stone-200/90 rounded-3xl p-6 visualizer-shadow space-y-6">
+
+                    <!-- Length Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="font-heading font-bold text-stone-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-ruler-horizontal text-inok-teal"></i>
+                                <span>Oshxona umumiy uzunligi:</span>
+                            </label>
+                            <div
+                                class="flex items-center gap-1 bg-stone-100 border border-stone-200 rounded-lg px-2.5 py-1">
+                                <input type="number" id="input-length-num" value="3.5" step="0.1" min="1.5" max="10"
+                                    oninput="syncSliderFromInput(this.value)"
+                                    class="w-12 bg-transparent text-right font-mono font-bold text-stone-900 text-sm focus:outline-none">
+                                <span class="text-xs font-bold text-stone-500">metr</span>
+                            </div>
+                        </div>
+                        <input type="range" id="input-length-slider" min="1.5" max="8.0" step="0.1" value="3.5"
+                            oninput="syncInputFromSlider(this.value)"
+                            class="w-full accent-inok-teal bg-stone-200 rounded-lg h-2 cursor-pointer">
+                        <div class="flex justify-between text-[11px] text-stone-400 font-medium mt-1">
+                            <span>1.5 m (ixcham)</span>
+                            <span>4.0 m (standart)</span>
+                            <span>8.0 m (katta)</span>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-100">
+
+                    <!-- Material & Component Selectors Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                        <!-- Fasad Material -->
+                        <div>
+                            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">
+                                Fasad Materiali (Eshiklar)
+                            </label>
+                            <select id="select-facade" onchange="recalculatePrice()"
+                                class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-800 font-medium text-sm focus:outline-none focus:border-inok-teal">
+                                <option value="laminat">MDF Laminat (Hamyonbop)</option>
+                                <option value="akril" selected>MDF Akril Glossy (Ommabop)</option>
+                                <option value="emal">MDF Emal Bo'yoq (Premium Mat/Yaltiroq)</option>
+                                <option value="shpon">MDF Tabiiy Shpon (Yog'och)</option>
+                                <option value="massiv">Tabiiy Yog'och Massiv</option>
+                            </select>
+                        </div>
+
+                        <!-- Stoleshnitsa Material -->
+                        <div>
+                            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">
+                                Stol Usti (Stoleshnitsa)
+                            </label>
+                            <select id="select-countertop" onchange="recalculatePrice()"
+                                class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-800 font-medium text-sm focus:outline-none focus:border-inok-teal">
+                                <option value="postforming" selected>Postforming (Laminat 38mm)</option>
+                                <option value="kvars">Kvars Aglomerat (Sun'iy Tosh)</option>
+                                <option value="mramor">Tabiiy Marmar / Granit</option>
+                            </select>
+                        </div>
+
+                        <!-- Furnitura -->
+                        <div>
+                            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">
+                                Furnitura & Petlyalar
+                            </label>
+                            <select id="select-fittings" onchange="recalculatePrice()"
+                                class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-800 font-medium text-sm focus:outline-none focus:border-inok-teal">
+                                <option value="standard">Standart (DTC Dovodchik)</option>
+                                <option value="dtc_premium">DTC Premium (Silliq yopiluvchi)</option>
+                                <option value="blum" selected>Blum (Avstriya Dovodchik)</option>
+                                <option value="hettich">Hettich (Germaniya Premium)</option>
+                            </select>
+                        </div>
+
+                        <!-- Color Preset / Visual Style -->
+                        <div>
+                            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">
+                                Rang Uslubi
+                            </label>
+                            <div class="flex items-center gap-3 pt-1">
+                                <button type="button" onclick="setCabinetColor('wood')"
+                                    class="w-7 h-7 rounded-full bg-amber-700 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Yog'och tekstura"></button>
+                                <button type="button" onclick="setCabinetColor('white')"
+                                    class="w-7 h-7 rounded-full bg-white border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Oq minimalizm"></button>
+                                <button type="button" onclick="setCabinetColor('dark')"
+                                    class="w-7 h-7 rounded-full bg-stone-800 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Zamonaviy Grafit"></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Dynamic Smeta Calculation Card (5 Cols) -->
+            <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+
+                <div
+                    class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-7 visualizer-shadow relative overflow-hidden">
+
+                    <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+                        <span
+                            class="text-xs font-bold text-inok-teal uppercase tracking-widest bg-teal-50 px-2.5 py-1 rounded-md">INOK
+                            Smeta</span>
+                        <span class="text-xs text-stone-400"><i
+                                class="fa-solid fa-rotate text-stone-300 mr-1"></i>Real-Vaqt Hisobi</span>
+                    </div>
+
+                    <!-- Main Total Price Display -->
+                    <div class="my-6">
+                        <span class="text-xs text-stone-500 font-medium block mb-1">Taxminiy umumiy qiymat:</span>
+                        <div id="display-total-price"
+                            class="font-heading text-4xl sm:text-5xl font-extrabold text-stone-900 tracking-tight">
+                            7,990,000 so'm
+                        </div>
+                        <div class="text-xs text-stone-500 mt-2 flex items-center gap-1.5">
+                            <span>1 pogon metr o'rtacha:</span>
+                            <span id="display-per-meter" class="font-bold text-stone-700">2,282,000 so'm</span>
+                        </div>
+                    </div>
+
+                    <!-- Itemized Cost Breakdown -->
+                    <div class="space-y-3 pt-4 border-t border-stone-100 text-xs sm:text-sm">
+                        <div class="flex justify-between items-center text-stone-600">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-boxes-stacked text-stone-400"></i>
+                                <span>Korpus + Fasadlar:</span>
+                            </span>
+                            <span id="breakdown-facade" class="font-semibold text-stone-900">5,120,000 so'm</span>
+                        </div>
+
+                        <div class="flex justify-between items-center text-stone-600">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-table-cells text-stone-400"></i>
+                                <span>Stol Usti (Stoleshnitsa):</span>
+                            </span>
+                            <span id="breakdown-countertop" class="font-semibold text-stone-900">1,620,000 so'm</span>
+                        </div>
+
+                        <div class="flex justify-between items-center text-stone-600">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-screws-tilting text-stone-400"></i>
+                                <span>Furnitura (Petlya & Dovodchik):</span>
+                            </span>
+                            <span id="breakdown-fittings" class="font-semibold text-stone-900">950,000 so'm</span>
+                        </div>
+
+                        <div class="flex justify-between items-center text-stone-600">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-truck-ramp-box text-stone-400"></i>
+                                <span>O'rnatish & Yetkazib berish:</span>
+                            </span>
+                            <span id="breakdown-installation" class="font-semibold text-emerald-600">BEPUL</span>
+                        </div>
+                    </div>
+
+                    <!-- Call To Action Buttons -->
+                    <div class="mt-7 space-y-3">
+                        <button onclick="openTelegramModal()"
+                            class="w-full py-4 px-5 bg-inok-teal hover:bg-inok-tealHover text-white font-heading font-bold rounded-2xl shadow-lg shadow-teal-700/20 transition transform active:scale-95 flex items-center justify-center gap-3 text-sm sm:text-base">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                            <span>Smetani Telegramga Yuborish</span>
+                        </button>
+
+                        <a href="tel:+998901234567"
+                            class="w-full py-3 px-4 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold rounded-2xl transition flex items-center justify-center gap-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-phone text-stone-500"></i>
+                            <span>Mutaxassis Bilan Bog'lanish</span>
+                        </a>
+                    </div>
+
+                    <p class="text-[11px] text-stone-400 text-center mt-4">
+                        * Yakuniy aniq smeta o'lchov oluvchi uyingizga borib o'lchagandan so'ng belgilanadi.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- COMPLETED PROJECTS GALLERY SECTION (#proekty) -->
+    <section id="proekty" class="py-16 bg-stone-100/60 border-t border-b border-stone-200/70 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-bold text-inok-teal uppercase tracking-widest block mb-1">Katalog &
+                        Portfolio</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-stone-900">
+                        Bajarilgan Tayyor Loyihalar Katalogi
+                    </h2>
+                    <p class="text-stone-500 text-xs sm:text-sm mt-1">Har bir loyiha alohida xonadon o'lchamlariga
+                        moslab buyurtma asosida tayyorlangan</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <button onclick="filterProjects('all')"
+                        class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 text-white transition">Barchasi</button>
+                    <button onclick="filterProjects('zamonaviy')"
+                        class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-stone-600 border border-stone-200 hover:bg-stone-50 transition">Zamonaviy</button>
+                    <button onclick="filterProjects('neoklassik')"
+                        class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-stone-600 border border-stone-200 hover:bg-stone-50 transition">Neoklassik</button>
+                    <button onclick="filterProjects('klassik')"
+                        class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-stone-600 border border-stone-200 hover:bg-stone-50 transition">Klassik</button>
+                    <button onclick="filterProjects('loft')"
+                        class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-stone-600 border border-stone-200 hover:bg-stone-50 transition">Loft</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid (6 Detailed Items) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+                <!-- Project Item 1 -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="zamonaviy">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80"
+                                alt="Zamonaviy Oshxona"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">3.8
+                                Metr • To'g'ri</span>
+                            <span
+                                class="absolute top-4 right-4 bg-teal-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">MDF
+                                Akril</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Minimalist Grafit & Akril
+                            </h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">Silliq yopiluvchi Blum mexanizmlari,
+                                kvars aglomerat stol usti hamda vertikal LED yoritgichlar bilan jihozlangan.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Blum
+                                    Dovodchik</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Kvars
+                                    Tosh</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Gola
+                                    Profil</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">9 400 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p1')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(3.8, 'akril', 'kvars', 'blum')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="neoklassik">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                                alt="Neoklassik Oshxona"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">4.5
+                                Metr • L-simon</span>
+                            <span
+                                class="absolute top-4 right-4 bg-amber-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">MDF
+                                Emal</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Neoklassik Oq Emal</h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">Nafis фрезеровка qilingan mat bo'yoq
+                                Emal fasadlar, latun tutqichlar va klassik vitrina oynalar.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Mat
+                                    Bo'yoq</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Hettich
+                                    Germany</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Oyna
+                                    Vitrina</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">12 800 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p2')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(4.5, 'emal', 'kvars', 'hettich')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 3 -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="klassik">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80"
+                                alt="Klassik Yog'och Oshxona"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">3.2
+                                Metr • To'g'ri</span>
+                            <span
+                                class="absolute top-4 right-4 bg-amber-900 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Tabiiy
+                                Shpon</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Tabiiy Shpon Ekostil</h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">Tabiiy yong'oq yog'och fakturasi,
+                                mustahkam marmar stol usti va sezilmas avtomat dovodchiklar.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Eko
+                                    Yog'och</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Marmar
+                                    Tosh</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">DTC
+                                    Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">8 100 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p3')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(3.2, 'shpon', 'mramor', 'dtc_premium')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 4 (Loft) -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="loft">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+                                alt="Loft Industrial Oshxona"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">4.2
+                                Metr • To'g'ri</span>
+                            <span
+                                class="absolute top-4 right-4 bg-stone-800 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Loft
+                                Mat Qora</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Loft Industrial Matte Black
+                            </h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">Grafit mat fasad, ochiq metall
+                                tokchalar va issiq yog'och faktura kombinatsiyasi.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Mat
+                                    Touch</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Metall
+                                    Profil</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Blum
+                                    Push-to-Open</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">10 900 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p4')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(4.2, 'akril', 'kvars', 'blum')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 5 (Zamonaviy U-simon) -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="zamonaviy">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=800&q=80"
+                                alt="Kashmir Grey U-shape"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">5.0
+                                Metr • U-simon</span>
+                            <span
+                                class="absolute top-4 right-4 bg-teal-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">MDF
+                                Soft Touch</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Kashmir Grey & Ostrov</h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">U-simon ergonomik joylashuv, ostrov
+                                va bar stoyka bilan keng oshxonalar uchun ideal yechim.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Ostrov
+                                    Bilan</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Kvars
+                                    Aglomerat</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Hettich
+                                    Sensys</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">15 200 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p5')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(5.0, 'emal', 'kvars', 'hettich')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item 6 (Massiv Klassik) -->
+                <div class="project-card bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                    data-category="klassik">
+                    <div>
+                        <div class="relative h-64 bg-stone-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
+                                alt="Massiv Premium Oshxona"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span
+                                class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur text-white text-[11px] font-semibold px-3 py-1 rounded-full">3.6
+                                Metr • To'g'ri</span>
+                            <span
+                                class="absolute top-4 right-4 bg-amber-800 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Tabiiy
+                                Massiv</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl text-stone-900 mb-2">Fil Suyagi Premium Massiv
+                            </h3>
+                            <p class="text-stone-500 text-xs mb-4 leading-relaxed">Klassik uslubdagi tabiiy eman
+                                massivi, patina ishlov berish va oltin suvi yuritilgan karnizlar.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">100%
+                                    Massiv</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Patina
+                                    Oltin</span>
+                                <span
+                                    class="bg-stone-100 text-stone-600 text-[10px] font-semibold px-2 py-0.5 rounded">Blum
+                                    Motion</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 border-t border-stone-100 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-lg">14 500 000 so'm</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal('p6')"
+                                class="p-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition"
+                                title="Batafsil">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button onclick="applyPresetProject(3.6, 'massiv', 'mramor', 'blum')"
+                                class="px-3 py-2.5 bg-teal-50 hover:bg-teal-100 text-inok-teal rounded-xl text-xs font-bold transition">
+                                Kalkulyatorga
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION (#about) -->
+    <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header Story -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+            <div class="lg:col-span-6 space-y-5">
+                <span
+                    class="px-3.5 py-1 bg-teal-50 border border-teal-200 text-inok-teal text-xs font-bold tracking-wider uppercase rounded-full inline-block">
+                    Biz Haqimizda — INOK Studio
+                </span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-stone-900 leading-tight">
+                    Sifat, Aniqlik va Zamonaviy Dizayn Uyug'unligi
+                </h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    <strong>INOK Studio</strong> — 2016-yildan buyon O'zbekiston mebel bozorida yuqori sifatli va
+                    shaxsiy loyihalar asosida oshxona mebellarini ishlab chiqarib kelayotgan yetakchi kompaniyalardan
+                    biridir.
+                </p>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Bizning maqsadiimiz — uyingiz shinamligi va oshxonangiz qulayligini Yevropaning eng zamonaviy
+                    stanoklari hamda sertifikatlangan ekologik xavfsiz materiallar orqali ta'minlashdir. Har bir
+                    mebelimiz doimiy chidamlilik va estetik go'zallikka javob beradi.
+                </p>
+
+                <!-- Company Key Benefits Checklist -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-teal-50 text-inok-teal flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <span class="text-xs font-bold text-stone-800">Homag & Biesse Avtomat Stanoklar</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-teal-50 text-inok-teal flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <span class="text-xs font-bold text-stone-800">E1 Klass Ekologik Materiallar</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-teal-50 text-inok-teal flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <span class="text-xs font-bold text-stone-800">Rasmiy Shartnoma & 5 Yil Kafolat</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-teal-50 text-inok-teal flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </div>
+                        <span class="text-xs font-bold text-stone-800">100% Aniq Muddatda Topshirish</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Visual / Showroom Grid -->
+            <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                <div class="space-y-4">
+                    <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=600&q=80"
+                        alt="INOK Zavod" class="rounded-3xl shadow-md object-cover h-56 w-full">
+                    <div class="bg-stone-900 text-white p-6 rounded-3xl space-y-2">
+                        <div class="font-heading font-extrabold text-3xl text-inok-woodLight">2,800+</div>
+                        <div class="text-xs text-stone-300 font-medium">O'zbekiston bo'ylab o'rnatilgan baxtli xonadon
+                            oshxonalari</div>
+                    </div>
+                </div>
+                <div class="space-y-4 pt-6">
+                    <div class="bg-inok-teal text-white p-6 rounded-3xl space-y-2">
+                        <div class="font-heading font-extrabold text-3xl">10+ Yil</div>
+                        <div class="text-xs text-teal-100 font-medium">Mebel sanoati va dizayni sohasida uzluksiz
+                            tajriba</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=600&q=80"
+                        alt="Showroom" class="rounded-3xl shadow-md object-cover h-56 w-full">
+                </div>
+            </div>
+        </div>
+
+        <!-- 4-STEP PRODUCTION & WORK PROCESS -->
+        <div class="bg-stone-900 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div class="relative z-10 max-w-3xl mb-12">
+                <span class="text-xs font-bold text-inok-teal uppercase tracking-widest block mb-2">Ishlash
+                    Tartibi</span>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold">Buyurtma Berishdan To Tayyor Oshxonagacha 4
+                    Bosqich</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+
+                <!-- Step 1 -->
+                <div class="space-y-3 relative">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-stone-800 text-inok-teal font-heading font-extrabold text-xl flex items-center justify-center border border-stone-700">
+                        01
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-white">Bepul O'lchov & 3D</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed">Dizaynerimiz uyingizga borib lazer o'lchov oladi
+                        va 3D eskiz tayyorlaydi.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="space-y-3 relative">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-stone-800 text-inok-teal font-heading font-extrabold text-xl flex items-center justify-center border border-stone-700">
+                        02
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-white">Material Tanlovi</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed">Katalogimizdan fasad rangi, stoleshnitsa va
+                        Blum/Hettich furnituralarini tanlaysiz.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="space-y-3 relative">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-stone-800 text-inok-teal font-heading font-extrabold text-xl flex items-center justify-center border border-stone-700">
+                        03
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-white">Aniq Ishlab Chiqarish</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed">Nemis stanoklarida 0.1 mm aniqlikda kesiladi va
+                        10-15 kunda tayyorlanadi.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="space-y-3 relative">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-teal-600 text-white font-heading font-extrabold text-xl flex items-center justify-center shadow-lg shadow-teal-900/50">
+                        04
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-white">Bepul O'rnatish</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed">Ustalardan iborat jamoamiz belgilangan kunda kelib
+                        toza va puxta yig'ib beradi.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16 max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+            <h2 class="font-heading text-3xl font-bold text-stone-900">Ko'p Beriladigan Savollar</h2>
+            <p class="text-stone-500 text-sm mt-1">Buyurtma berish jarayoni va kafolatlar bo'yicha ma'lumotlar</p>
+        </div>
+
+        <div class="space-y-4">
+            <details class="bg-white border border-stone-200 rounded-2xl p-5 cursor-pointer group">
+                <summary
+                    class="font-bold text-stone-800 text-sm sm:text-base flex justify-between items-center list-none">
+                    <span>O'lchov olish va loyihalash bepulmi?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed">
+                    Ha, mutaxassisimiz Toshkent shahar bo'ylab kelib o'lcham olishi hamda 3D dizayn loyihasini tayyorlab
+                    berishi mutlaqo BEPUL hisoblanadi.
+                </p>
+            </details>
+
+            <details class="bg-white border border-stone-200 rounded-2xl p-5 cursor-pointer group">
+                <summary
+                    class="font-bold text-stone-800 text-sm sm:text-base flex justify-between items-center list-none">
+                    <span>Mebel necha kunda tayyor bo'ladi?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed">
+                    Tanlangan material turiga qarab buyurtma 10 ish kunidan 20 ish kunigacha bo'lgan muddatda to'liq
+                    tayyorlanib, o'rnatib beriladi.
+                </p>
+            </details>
+
+            <details class="bg-white border border-stone-200 rounded-2xl p-5 cursor-pointer group">
+                <summary
+                    class="font-bold text-stone-800 text-sm sm:text-base flex justify-between items-center list-none">
+                    <span>Mebellarga kafolat bormi?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed">
+                    Barcha mebellarimiz uchun va mexanizm/furnituralar uchun 2 yildan 5 yilgacha rasmiy kafolat
+                    beriladi.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- TELEGRAM ORDER MODAL -->
+    <div id="telegram-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm hidden"
+        role="dialog" aria-modal="true" aria-labelledby="telegram-modal-title">
+        <div class="bg-white border border-stone-200 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative">
+            <button type="button" onclick="closeTelegramModal()"
+                class="absolute top-5 right-5 text-stone-400 hover:text-stone-800 text-lg" aria-label="Yopish">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-5 pr-8">
+                <div class="w-11 h-11 rounded-2xl bg-teal-50 text-inok-teal flex items-center justify-center text-xl">
+                    <i class="fa-brands fa-telegram"></i>
+                </div>
+                <div>
+                    <h3 id="telegram-modal-title" class="font-heading text-lg font-bold text-stone-900">Smetani
+                        Telegramga yuborish</h3>
+                    <p class="text-xs text-stone-500">Ma'lumotlaringizni qoldiring — menejer siz bilan bog'lanadi</p>
+                </div>
+            </div>
+
+            <div class="bg-stone-50 rounded-2xl p-4 mb-5 border border-stone-200">
+                <div class="flex justify-between text-xs text-stone-500">
+                    <span>Joriy smeta:</span>
+                    <strong id="modal-summary-total" class="text-stone-900">0 so'm</strong>
+                </div>
+            </div>
+
+            <form onsubmit="handleTelegramSend(event)" class="space-y-4">
+                <div>
+                    <label for="client-name" class="block text-xs font-bold text-stone-700 mb-1.5">Ism va
+                        familiya</label>
+                    <input id="client-name" type="text" required minlength="2" autocomplete="name"
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-inok-teal"
+                        placeholder="Masalan: Abdulaziz Abdusattorov">
+                </div>
+                <div>
+                    <label for="client-phone" class="block text-xs font-bold text-stone-700 mb-1.5">Telefon
+                        raqam</label>
+                    <input id="client-phone" type="tel" required autocomplete="tel" pattern="[+]?[0-9 ()-]{9,20}"
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-inok-teal"
+                        placeholder="+998 90 123 45 67">
+                </div>
+                <div>
+                    <label for="client-notes" class="block text-xs font-bold text-stone-700 mb-1.5">Manzil /
+                        izoh</label>
+                    <textarea id="client-notes" rows="3"
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-3 text-sm focus:outline-none focus:border-inok-teal resize-none"
+                        placeholder="Manzil, qo'shimcha talab yoki izoh..."></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full py-3.5 px-5 bg-inok-teal hover:bg-inok-tealHover text-white font-heading font-bold rounded-2xl shadow-lg transition flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                    Telegramda davom etish
+                </button>
+                <p class="text-[10px] text-stone-400 text-center">Telegram ochilgach, tayyor buyurtma matnini
+                    yuborishingiz mumkin.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- PROJECT DETAIL MODAL -->
+    <div id="project-detail-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/70 backdrop-blur-sm hidden"
+        role="dialog" aria-modal="true" aria-labelledby="project-modal-heading">
+        <div
+            class="bg-white border border-stone-200 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button type="button" onclick="closeProjectModal()"
+                class="absolute top-5 right-5 text-stone-400 hover:text-stone-800 text-lg z-10" aria-label="Yopish">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="project-modal-content">
+                <!-- Dynamically injected via JS openProjectModal() -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800 text-xs">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <span class="font-heading font-extrabold text-white text-xl tracking-widest block mb-1">SHOD
+                    MEBEL</span>
+                <p>© 2026 SHOD Mebel — Barcha huquqlar himoyalangan.</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#konfigurator" class="hover:text-white transition">Konfigurator</a>
+                <a href="#proekty" class="hover:text-white transition">Loyihalar</a>
+                <a href="tel:+998901234567" class="text-inok-teal hover:underline font-bold">+998 (90) 123-45-67</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & ENGINE -->
+    <script>
+        // Configuration Engine State
+        let state = {
+            length: 3.5,
+            layout: 'straight', // 'straight', 'l_shape', 'u_shape'
+            facade: 'akril',
+            countertop: 'postforming',
+            fittings: 'blum',
+            colorStyle: 'wood' // 'wood', 'white', 'dark'
+        };
+
+        // Pricing configuration: amounts are editable here without changing the UI.
+        const pricingConfig = {
+            basePricePerMeter: 1100000,
+            facadeMultipliers: {
+                laminat: 0.82,
+                akril: 1.00,
+                emal: 1.18,
+                shpon: 1.32,
+                massiv: 1.60
+            },
+            countertopAddonPerMeter: {
+                postforming: 460000,
+                kvars: 900000,
+                mramor: 1150000
+            },
+            fittingsMultiplier: {
+                standard: 1.00,
+                dtc_premium: 1.08,
+                blum: 1.16,
+                hettich: 1.22
+            }
+        };
+
+
+        // Project catalog data details dictionary
+        const projectCatalogData = {
+            p1: {
+                title: "Minimalist Grafit & Akril",
+                length: 3.8,
+                layoutText: "To'g'ri (1 Qator)",
+                facadeText: "MDF Akril Glossy Ultra",
+                countertopText: "Kvars Aglomerat (Sun'iy Tosh)",
+                fittingsText: "Blum Dovodchik Tizimi",
+                price: "9,400,000 so'm",
+                image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+                description: "Toshkent shahridagi zamonaviy xonadon uchun maxsus tayyorlangan mebel. Fasad yuzasi barmoq izi qolmaydigan maxsus Akril qoplama bilan qoplangan."
+            },
+            p2: {
+                title: "Neoklassik Oq Emal",
+                length: 4.5,
+                layoutText: "Burchakli (L-simon)",
+                facadeText: "MDF Emal Mat Bo'yoq",
+                countertopText: "Kvars Tosh 20mm",
+                fittingsText: "Hettich Sensys Dovodchik",
+                price: "12,800,000 so'm",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                description: "Nafis neoklassik shakllar va oltin rangdagi profil tutqichlar. Vitrina oynalari tunda mayin LED yoritgichlar bilan yoritiladi."
+            },
+            p3: {
+                title: "Tabiiy Shpon Ekostil",
+                length: 3.2,
+                layoutText: "To'g'ri",
+                facadeText: "Tabiiy Yong'oq Shpon",
+                countertopText: "Tabiiy Marmar",
+                fittingsText: "DTC Premium Dovodchik",
+                price: "8,100,000 so'm",
+                image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
+                description: "Yog'och va ekostil ishqibozlari uchun mo'ljallangan premium mebel. Fasadlar lak va tabiiy vositalar bilan ishlov berilgan."
+            },
+            p4: {
+                title: "Loft Industrial Matte Black",
+                length: 4.2,
+                layoutText: "To'g'ri",
+                facadeText: "MDF Soft Touch Qora Mat",
+                countertopText: "Kvars Aglomerat",
+                fittingsText: "Blum Tip-On Push to Open",
+                price: "10,900,000 so'm",
+                image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80",
+                description: "Zamonaviy Loft uslubidagi qora mat fasadlar va ochiq qora metall tokchalar mebelga o'zgacha uslub beradi."
+            },
+            p5: {
+                title: "Kashmir Grey & Ostrov",
+                length: 5.0,
+                layoutText: "U-simon (Ostrov Bilan)",
+                facadeText: "MDF Emal Kashmir Grey",
+                countertopText: "Kvars Tosh",
+                fittingsText: "Hettich Premium Germany",
+                price: "15,200,000 so me",
+                image: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=800&q=80",
+                description: "Keng xonadon va hovlilar uchun ostrovli maxsus model. Taom tayyorlash va ovqatlanish zonasi birlashtirilgan."
+            },
+            p6: {
+                title: "Fil Suyagi Premium Massiv",
+                length: 3.6,
+                layoutText: "To'g'ri Klassik",
+                facadeText: "Tabiiy Eman Massiv",
+                countertopText: "Marmar Tosh",
+                fittingsText: "Blum Avstriya",
+                price: "14,500,000 so'm",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+                description: "Yog'och massividan tayyorlangan abadiy klassika. Oltin patina va o'yma naqshlar o'ziga xos hashamat bag'ishlaydi."
+            }
+        };
+
+        function openProjectModal(id) {
+            const proj = projectCatalogData[id];
+            if (!proj) return;
+
+            const modalContent = document.getElementById('project-modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <img src="${proj.image}" alt="${proj.title}" class="w-full h-64 sm:h-72 object-cover rounded-2xl">
+                    
+                    <div>
+                        <span class="text-xs font-bold text-inok-teal uppercase tracking-widest block mb-1">INOK Portfolio</span>
+                        <h3 class="font-heading text-2xl font-bold text-stone-900">${proj.title}</h3>
+                        <p class="text-xs sm:text-sm text-stone-600 mt-2 leading-relaxed">${proj.description}</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 bg-stone-50 p-4 rounded-2xl border border-stone-200 text-xs">
+                        <div>
+                            <span class="text-stone-400 block">Uzunlik va shakl:</span>
+                            <span class="font-bold text-stone-800">${proj.length} metr (${proj.layoutText})</span>
+                        </div>
+                        <div>
+                            <span class="text-stone-400 block">Fasad materiali:</span>
+                            <span class="font-bold text-stone-800">${proj.facadeText}</span>
+                        </div>
+                        <div>
+                            <span class="text-stone-400 block">Stol usti (Stoleshnitsa):</span>
+                            <span class="font-bold text-stone-800">${proj.countertopText}</span>
+                        </div>
+                        <div>
+                            <span class="text-stone-400 block">Furnitura:</span>
+                            <span class="font-bold text-stone-800">${proj.fittingsText}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-stone-100 pt-4">
+                        <div>
+                            <span class="text-xs text-stone-400 block">Loyiha narxi:</span>
+                            <span class="font-heading font-extrabold text-stone-900 text-2xl">${proj.price}</span>
+                        </div>
+                        <button onclick="closeProjectModal(); scrollToCalculator();" class="px-5 py-3 bg-inok-teal hover:bg-inok-tealHover text-white font-bold rounded-xl text-xs transition shadow-md">
+                            Shunday Buyurtma Qilish
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('project-detail-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-detail-modal').classList.add('hidden');
+        }
+
+        function syncInputFromSlider(val) {
+            const num = Math.max(1.5, Math.min(8.0, parseFloat(val) || 1.5));
+            state.length = Number(num.toFixed(1));
+            document.getElementById('input-length-num').value = state.length.toFixed(1);
+            recalculatePrice();
+        }
+
+        function syncSliderFromInput(val) {
+            let num = parseFloat(val) || 1.5;
+            if (num < 1.5) num = 1.5;
+            if (num > 8.0) num = 8.0;
+            state.length = num;
+            document.getElementById('input-length-slider').value = state.length;
+            recalculatePrice();
+        }
+
+        function setLayout(layoutType) {
+            state.layout = layoutType;
+
+            // Update button styles
+            document.querySelectorAll('.layout-btn').forEach(btn => {
+                btn.classList.remove('border-inok-teal', 'text-inok-teal', 'bg-white');
+                btn.classList.add('border-stone-200', 'text-stone-600', 'bg-stone-50');
+            });
+
+            const activeBtn = document.getElementById(`btn-layout-${layoutType}`);
+            activeBtn.classList.add('border-inok-teal', 'text-inok-teal', 'bg-white');
+            activeBtn.classList.remove('border-stone-200', 'text-stone-600', 'bg-stone-50');
+
+            // Badge Update
+            const badgeText = layoutType === 'straight' ? "To'g'ri (1 Qator)" : layoutType === 'l_shape' ? "Burchakli (L)" : "P-simon (U)";
+            document.getElementById('badge-layout').innerText = badgeText;
+
+            recalculatePrice();
+        }
+
+        function setCabinetColor(color) {
+            state.colorStyle = color;
+            renderVisualizer();
+        }
+
+        // Calculation & Render Engine
+        function recalculatePrice() {
+            // Read values
+            state.facade = document.getElementById('select-facade').value;
+            state.countertop = document.getElementById('select-countertop').value;
+            state.fittings = document.getElementById('select-fittings').value;
+
+            // Compute length multiplier based on shape
+            let effectiveLength = state.length;
+            if (state.layout === 'l_shape') effectiveLength += 1.0;
+            if (state.layout === 'u_shape') effectiveLength += 2.0;
+
+            // Calculations
+            const facadeMult = pricingConfig.facadeMultipliers[state.facade] || 1.0;
+            const fittingsMult = pricingConfig.fittingsMultiplier[state.fittings] || 1.0;
+            const countertopMeterPrice = pricingConfig.countertopAddonPerMeter[state.countertop] || 0;
+
+            const facadeTotal = Math.round(pricingConfig.basePricePerMeter * facadeMult * effectiveLength);
+            const countertopTotal = Math.round(countertopMeterPrice * effectiveLength);
+            const fittingsTotal = Math.round(facadeTotal * (fittingsMult - 1.0) + (effectiveLength * 150000));
+
+            const grandTotal = facadeTotal + countertopTotal + fittingsTotal;
+            const perMeterAverage = Math.round(grandTotal / effectiveLength);
+
+            // Update DOM Elements
+            document.getElementById('display-total-price').innerText = formatUZS(grandTotal);
+            document.getElementById('display-per-meter').innerText = formatUZS(perMeterAverage);
+            document.getElementById('breakdown-facade').innerText = formatUZS(facadeTotal);
+            document.getElementById('breakdown-countertop').innerText = formatUZS(countertopTotal);
+            document.getElementById('breakdown-fittings').innerText = formatUZS(fittingsTotal);
+
+            document.getElementById('badge-length').innerText = `${effectiveLength.toFixed(1)} metr`;
+
+            // Render SVG Visualizer
+            renderVisualizer();
+        }
+
+        // SVG Visualizer Renderer (INOK Modular Drawing Engine)
+        function renderVisualizer() {
+            const svg = document.getElementById('visualizer-svg');
+            const style = state.colorStyle;
+
+            // Color Palettes
+            let mainColor = "#c4ab89"; // wood default
+            let darkColor = "#a88d67";
+            if (style === 'white') { mainColor = "#ffffff"; darkColor = "#e2e8f0"; }
+            if (style === 'dark') { mainColor = "#3a3630"; darkColor = "#1e1c19"; }
+
+            const countertopColor = state.countertop === 'kvars' ? '#0e7490' : state.countertop === 'mramor' ? '#475569' : '#d1d5db';
+
+            // Calculate number of modules dynamically based on length
+            const moduleCount = Math.max(3, Math.min(8, Math.round(state.length * 1.5)));
+            const moduleWidth = 380 / moduleCount;
+
+            let svgContent = `
+                <!-- Background Floor Line -->
+                <rect width="500" height="280" fill="#f8f8f6" rx="12"/>
+                <line x1="30" y1="240" x2="470" y2="240" stroke="#cbd5e1" stroke-width="2"/>
+            `;
+
+            const startX = 60;
+            const totalWidth = moduleCount * moduleWidth;
+
+            // 1. TOP CABINETS (Shkaflar)
+            svgContent += `<g class="top-cabinets">`;
+            for (let i = 0; i < moduleCount; i++) {
+                let x = startX + (i * moduleWidth);
+                svgContent += `
+                    <rect x="${x + 1}" y="40" width="${moduleWidth - 2}" height="65" fill="${mainColor}" stroke="#94a3b8" stroke-width="1" rx="2"/>
+                    <line x1="${x + 5}" y1="100" x2="${x + moduleWidth - 5}" y2="100" stroke="#cbd5e1" stroke-width="2"/>
+                `;
+            }
+            svgContent += `</g>`;
+
+            // 2. COUNTERTOP (Stoleshnitsa)
+            svgContent += `
+                <rect x="${startX - 4}" y="140" width="${totalWidth + 8}" height="10" fill="${countertopColor}" stroke="#64748b" stroke-width="1" rx="2"/>
+            `;
+
+            // 3. LOWER CABINETS (Javonlar & Dovodchiklar)
+            svgContent += `<g class="bottom-cabinets">`;
+            for (let i = 0; i < moduleCount; i++) {
+                let x = startX + (i * moduleWidth);
+                svgContent += `
+                    <rect x="${x + 1}" y="150" width="${moduleWidth - 2}" height="85" fill="${mainColor}" stroke="#94a3b8" stroke-width="1" rx="2"/>
+                    <!-- Handle -->
+                    <rect x="${x + (moduleWidth / 2) - 8}" y="160" width="16" height="4" fill="#64748b" rx="1"/>
+                `;
+            }
+            svgContent += `</g>`;
+
+            // Corner indicator for L & U shapes
+            if (state.layout === 'l_shape' || state.layout === 'u_shape') {
+                svgContent += `
+                    <path d="M ${startX + totalWidth} 140 L ${startX + totalWidth + 30} 125 L ${startX + totalWidth + 30} 220 L ${startX + totalWidth} 235 Z" fill="${darkColor}" opacity="0.85" stroke="#64748b"/>
+                `;
+            }
+
+            svg.innerHTML = svgContent;
+        }
+
+        // Project Presets Loader
+        function applyPresetProject(len, facade, countertop, fittings) {
+            state.length = len;
+            document.getElementById('input-length-num').value = len;
+            document.getElementById('input-length-slider').value = len;
+
+            document.getElementById('select-facade').value = facade;
+            document.getElementById('select-countertop').value = countertop;
+            document.getElementById('select-fittings').value = fittings;
+
+            recalculatePrice();
+            scrollToCalculator();
+        }
+
+        function filterProjects(cat) {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.category === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Logic
+        function openTelegramModal() {
+            document.getElementById('modal-summary-total').innerText = document.getElementById('display-total-price').innerText;
+            document.getElementById('telegram-modal').classList.remove('hidden');
+        }
+
+        function closeTelegramModal() {
+            document.getElementById('telegram-modal').classList.add('hidden');
+        }
+
+        function handleTelegramSend(e) {
+            e.preventDefault();
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const notes = document.getElementById('client-notes').value || 'Izohsiz';
+
+            const total = document.getElementById('display-total-price').innerText;
+            const length = `${state.length} metr`;
+
+            const text =
+                `📥 *INOK STUDIO — YANGI BUYURTMA SMETASI*
+
+👤 *Mijoz:* ${name}
+📞 *Tel:* ${phone}
+
+📐 *MEBEL O'LCHAMLARI & MATERIALLAR:*
+• Shakli: ${state.layout === 'straight' ? 'To\'g\'ri' : state.layout === 'l_shape' ? 'Burchakli (L)' : 'P-simon (U)'}
+• Uzunlik: ${length}
+• Fasad: ${document.getElementById('select-facade').options[document.getElementById('select-facade').selectedIndex].text}
+• Stoleshnitsa: ${document.getElementById('select-countertop').options[document.getElementById('select-countertop').selectedIndex].text}
+• Furnitura: ${document.getElementById('select-fittings').options[document.getElementById('select-fittings').selectedIndex].text}
+
+📍 *Manzil/Izoh:* ${notes}
+💰 *TAXMINIY SMETA SUMMASI:* *${total}*`;
+
+            const encoded = encodeURIComponent(text);
+            window.open(`https://t.me/shodmebel_admin?text=${encoded}`, '_blank');
+            closeTelegramModal();
+        }
+
+        function scrollToCalculator() {
+            document.getElementById('konfigurator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function formatUZS(amount) {
+            return new Intl.NumberFormat('uz-UZ').format(amount) + " so'm";
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeTelegramModal();
+                closeProjectModal();
+            }
+        });
+
+        ['telegram-modal', 'project-detail-modal'].forEach(id => {
+            const modal = document.getElementById(id);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) modal.classList.add('hidden');
+            });
+        });
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', function () {
+            setLayout(state.layout);
+            setCabinetColor(state.colorStyle);
+            recalculatePrice();
+        });
+    </script>
+</body>
+
+</html>
