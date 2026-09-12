@@ -124,7 +124,7 @@
             <a href="#" class="flex items-center gap-3">
                 <span
                     class="font-heading font-extrabold text-2xl tracking-widest text-stone-900 flex items-center gap-1.5">
-                    SHod mebel <span
+                    INOK <span
                         class="text-xs font-sans tracking-normal px-2 py-0.5 bg-stone-100 text-stone-600 rounded font-semibold uppercase">Studio</span>
                 </span>
             </a>
@@ -255,6 +255,31 @@
 
                     <hr class="border-stone-100">
 
+                    <!-- Height Input -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="font-heading font-bold text-stone-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrows-up-down text-inok-teal"></i>
+                                <span>Mebel umumiy balandligi:</span>
+                            </label>
+                            <div
+                                class="flex items-center gap-1 bg-stone-100 border border-stone-200 rounded-lg px-2.5 py-1">
+                                <input type="number" id="input-height-num" value="2.2" step="0.1" min="1.8" max="3.2"
+                                    oninput="syncHeight(this.value)"
+                                    class="w-16 bg-transparent text-right font-mono font-bold text-stone-900 text-sm focus:outline-none">
+                                <span class="text-xs font-bold text-stone-500">metr</span>
+                            </div>
+                        </div>
+                        <input type="range" id="input-height-slider" min="1.8" max="3.2" step="0.1" value="2.2"
+                            oninput="syncHeight(this.value)"
+                            class="w-full accent-inok-teal bg-stone-200 rounded-lg h-2 cursor-pointer">
+                        <div class="flex justify-between text-[11px] text-stone-400 font-medium mt-1">
+                            <span>1.8 m</span><span>2.2 m</span><span>3.2 m</span>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-100">
+
                     <!-- Material & Component Selectors Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
@@ -270,6 +295,7 @@
                                 <option value="emal">MDF Emal Bo'yoq (Premium Mat/Yaltiroq)</option>
                                 <option value="shpon">MDF Tabiiy Shpon (Yog'och)</option>
                                 <option value="massiv">Tabiiy Yog'och Massiv</option>
+                                <option value="laminat">Laminat (Hamyonbop)</option>
                             </select>
                         </div>
 
@@ -315,7 +341,21 @@
                                 <button type="button" onclick="setCabinetColor('dark')"
                                     class="w-7 h-7 rounded-full bg-stone-800 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
                                     title="Zamonaviy Grafit"></button>
+                                <button type="button" onclick="setCabinetColor('green')"
+                                    class="w-7 h-7 rounded-full bg-emerald-700 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Zaytun yashil"></button>
+                                <button type="button" onclick="setCabinetColor('blue')"
+                                    class="w-7 h-7 rounded-full bg-sky-700 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Ko'k"></button>
+                                <button type="button" onclick="setCabinetColor('beige')"
+                                    class="w-7 h-7 rounded-full bg-amber-100 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Bej"></button>
+                                <button type="button" onclick="setCabinetColor('red')"
+                                    class="w-7 h-7 rounded-full bg-rose-700 border-2 border-stone-300 focus:ring-2 ring-inok-teal transition"
+                                    title="Bordo"></button>
                             </div>
+                            <p class="text-[10px] text-stone-400 mt-2">Yog'och, oq, grafit, yashil, ko'k, bej va bordo.
+                            </p>
                         </div>
 
                     </div>
@@ -386,6 +426,31 @@
                         </div>
                     </div>
 
+                    <!-- Detailed Material Cost Table -->
+                    <div class="mt-5 pt-5 border-t border-stone-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-heading font-bold text-sm text-stone-800">Materiallar bo'yicha batafsil
+                                smeta</h4>
+                            <span class="text-[10px] text-stone-400">miqdor × birlik narxi</span>
+                        </div>
+                        <div class="overflow-x-auto rounded-2xl border border-stone-200">
+                            <table class="w-full text-[11px]">
+                                <thead class="bg-stone-50 text-stone-500">
+                                    <tr>
+                                        <th class="text-left p-2.5">Material</th>
+                                        <th class="text-right p-2.5">Miqdor</th>
+                                        <th class="text-right p-2.5">Birlik</th>
+                                        <th class="text-right p-2.5">Jami</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="materials-breakdown" class="divide-y divide-stone-100 bg-white"></tbody>
+                            </table>
+                        </div>
+                        <p class="text-[10px] text-stone-400 mt-2">Narxlar namuna sifatida kiritilgan. Ishlab
+                            chiqaruvchi o'zining real material narxlarini JavaScriptdagi <b>materialPrices</b>
+                            bo'limidan o'zgartirishi mumkin.</p>
+                    </div>
+
                     <!-- Call To Action Buttons -->
                     <div class="mt-7 space-y-3">
                         <button onclick="openTelegramModal()"
@@ -394,10 +459,15 @@
                             <span>Smetani Telegramga Yuborish</span>
                         </button>
 
-                        <a href="tel:+998901234567"
+                        <a id="admin-telegram-link" href="https://t.me/SSH6667" target="_blank" rel="noopener"
                             class="w-full py-3 px-4 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold rounded-2xl transition flex items-center justify-center gap-2 text-xs sm:text-sm">
+                            <i class="fa-brands fa-telegram text-sky-600"></i>
+                            <span>Mutaxassis bilan Telegramda bog'lanish</span>
+                        </a>
+                        <a href="tel:+99894 137 66 67"
+                            class="w-full py-3 px-4 bg-stone-50 hover:bg-stone-100 text-stone-600 font-bold rounded-2xl transition flex items-center justify-center gap-2 text-xs sm:text-sm">
                             <i class="fa-solid fa-phone text-stone-500"></i>
-                            <span>Mutaxassis Bilan Bog'lanish</span>
+                            <span>Telefon orqali bog'lanish</span>
                         </a>
                     </div>
 
@@ -1044,6 +1114,7 @@
         // Configuration Engine State
         let state = {
             length: 3.5,
+            height: 2.2,
             layout: 'straight', // 'straight', 'l_shape', 'u_shape'
             facade: 'akril',
             countertop: 'postforming',
@@ -1051,28 +1122,27 @@
             colorStyle: 'wood' // 'wood', 'white', 'dark'
         };
 
-        // Pricing configuration: amounts are editable here without changing the UI.
+        // Pricing configuration. Replace these sample values with SHOD Mebel's real supplier prices.
         const pricingConfig = {
-            basePricePerMeter: 1100000,
-            facadeMultipliers: {
-                laminat: 0.82,
-                akril: 1.00,
-                emal: 1.18,
-                shpon: 1.32,
-                massiv: 1.60
-            },
-            countertopAddonPerMeter: {
-                postforming: 460000,
-                kvars: 900000,
-                mramor: 1150000
-            },
-            fittingsMultiplier: {
-                standard: 1.00,
-                dtc_premium: 1.08,
-                blum: 1.16,
-                hettich: 1.22
-            }
+            basePricePerMeter: 720000,
+            facadeMultipliers: { laminat: 0.82, akril: 1.00, emal: 1.18, shpon: 1.32, massiv: 1.60 },
+            countertopAddonPerMeter: { postforming: 420000, kvars: 900000, mramor: 1150000 },
+            fittingsMultiplier: { standard: 1.00, dtc_premium: 1.08, blum: 1.16, hettich: 1.22 }
         };
+
+        const materialPrices = {
+            corpus: 650000,        // 1 m
+            facade: 850000,        // 1 m
+            countertop: { postforming: 420000, kvars: 900000, mramor: 1150000 },
+            fittings: { standard: 150000, dtc_premium: 230000, blum: 360000, hettich: 430000 },
+            backPanel: 120000,      // 1 m
+            legs: 45000,            // 1 dona
+            plinth: 55000,          // 1 m
+            installation: 0
+        };
+
+        // Admin Telegram profile. Change only this username when the real admin username is known.
+        const ADMIN_TELEGRAM_USERNAME = 'SSH6667';
 
 
         // Project catalog data details dictionary
@@ -1214,6 +1284,16 @@
             recalculatePrice();
         }
 
+        function syncHeight(val) {
+            let num = parseFloat(val);
+            if (!Number.isFinite(num)) num = 2.2;
+            num = Math.max(1.8, Math.min(3.2, num));
+            state.height = Number(num.toFixed(1));
+            document.getElementById('input-height-num').value = state.height.toFixed(1);
+            document.getElementById('input-height-slider').value = state.height;
+            recalculatePrice();
+        }
+
         function setLayout(layoutType) {
             state.layout = layoutType;
 
@@ -1241,39 +1321,62 @@
 
         // Calculation & Render Engine
         function recalculatePrice() {
-            // Read values
             state.facade = document.getElementById('select-facade').value;
             state.countertop = document.getElementById('select-countertop').value;
             state.fittings = document.getElementById('select-fittings').value;
 
-            // Compute length multiplier based on shape
             let effectiveLength = state.length;
             if (state.layout === 'l_shape') effectiveLength += 1.0;
             if (state.layout === 'u_shape') effectiveLength += 2.0;
 
-            // Calculations
-            const facadeMult = pricingConfig.facadeMultipliers[state.facade] || 1.0;
-            const fittingsMult = pricingConfig.fittingsMultiplier[state.fittings] || 1.0;
-            const countertopMeterPrice = pricingConfig.countertopAddonPerMeter[state.countertop] || 0;
+            // Height changes the material consumption: 2.2m is the reference height.
+            const heightFactor = state.height / 2.2;
+            const facadeMult = pricingConfig.facadeMultipliers[state.facade] || 1;
+            const fittingsMult = pricingConfig.fittingsMultiplier[state.fittings] || 1;
+            const counterUnit = materialPrices.countertop[state.countertop] || 0;
 
-            const facadeTotal = Math.round(pricingConfig.basePricePerMeter * facadeMult * effectiveLength);
-            const countertopTotal = Math.round(countertopMeterPrice * effectiveLength);
-            const fittingsTotal = Math.round(facadeTotal * (fittingsMult - 1.0) + (effectiveLength * 150000));
-
-            const grandTotal = facadeTotal + countertopTotal + fittingsTotal;
+            const corpusTotal = Math.round(materialPrices.corpus * effectiveLength * heightFactor);
+            const facadeTotal = Math.round(materialPrices.facade * facadeMult * effectiveLength * heightFactor);
+            const countertopTotal = Math.round(counterUnit * effectiveLength);
+            const fittingsBase = Math.round(materialPrices.fittings[state.fittings] * effectiveLength * heightFactor);
+            const fittingsTotal = Math.round(fittingsBase * (0.75 + fittingsMult * 0.25));
+            const backPanelTotal = Math.round(materialPrices.backPanel * effectiveLength * heightFactor);
+            const legsQty = Math.max(4, Math.ceil(effectiveLength * 4));
+            const legsTotal = legsQty * materialPrices.legs;
+            const plinthTotal = Math.round(materialPrices.plinth * effectiveLength);
+            const installationTotal = materialPrices.installation;
+            const grandTotal = corpusTotal + facadeTotal + countertopTotal + fittingsTotal + backPanelTotal + legsTotal + plinthTotal + installationTotal;
             const perMeterAverage = Math.round(grandTotal / effectiveLength);
 
-            // Update DOM Elements
             document.getElementById('display-total-price').innerText = formatUZS(grandTotal);
             document.getElementById('display-per-meter').innerText = formatUZS(perMeterAverage);
-            document.getElementById('breakdown-facade').innerText = formatUZS(facadeTotal);
+            document.getElementById('breakdown-facade').innerText = formatUZS(corpusTotal + facadeTotal);
             document.getElementById('breakdown-countertop').innerText = formatUZS(countertopTotal);
-            document.getElementById('breakdown-fittings').innerText = formatUZS(fittingsTotal);
+            document.getElementById('breakdown-fittings').innerText = formatUZS(fittingsTotal + backPanelTotal + legsTotal + plinthTotal);
+            document.getElementById('badge-length').innerText = `${effectiveLength.toFixed(1)} m × ${state.height.toFixed(1)} m`;
 
-            document.getElementById('badge-length').innerText = `${effectiveLength.toFixed(1)} metr`;
-
-            // Render SVG Visualizer
+            renderMaterialsBreakdown({
+                corpusTotal, facadeTotal, countertopTotal, fittingsTotal, backPanelTotal, legsTotal, plinthTotal, installationTotal,
+                effectiveLength, heightFactor, legsQty, grandTotal
+            });
             renderVisualizer();
+        }
+
+        function renderMaterialsBreakdown(data) {
+            const facadeText = document.getElementById('select-facade').options[document.getElementById('select-facade').selectedIndex].text;
+            const counterText = document.getElementById('select-countertop').options[document.getElementById('select-countertop').selectedIndex].text;
+            const fittingText = document.getElementById('select-fittings').options[document.getElementById('select-fittings').selectedIndex].text;
+            const rows = [
+                ['Korpus (DSP/MDF)', `${data.effectiveLength.toFixed(1)} m × ${state.height.toFixed(1)} m`, formatUZS(materialPrices.corpus), data.corpusTotal],
+                [`Fasad — ${facadeText}`, `${(data.effectiveLength * data.heightFactor).toFixed(1)} m²`, formatUZS(materialPrices.facade * (pricingConfig.facadeMultipliers[state.facade] || 1)), data.facadeTotal],
+                [`Stoleshnitsa — ${counterText}`, `${data.effectiveLength.toFixed(1)} m`, formatUZS(materialPrices.countertop[state.countertop]), data.countertopTotal],
+                [`Furnitura — ${fittingText}`, `${(data.effectiveLength * data.heightFactor).toFixed(1)} m`, formatUZS(materialPrices.fittings[state.fittings]), data.fittingsTotal],
+                ['Orqa panel', `${(data.effectiveLength * data.heightFactor).toFixed(1)} m²`, formatUZS(materialPrices.backPanel), data.backPanelTotal],
+                ['Oyoqchalar', `${data.legsQty} dona`, formatUZS(materialPrices.legs), data.legsTotal],
+                ['Plintus', `${data.effectiveLength.toFixed(1)} m`, formatUZS(materialPrices.plinth), data.plinthTotal],
+                ['O\'rnatish', '1 xizmat', formatUZS(materialPrices.installation), data.installationTotal]
+            ];
+            document.getElementById('materials-breakdown').innerHTML = rows.map(r => `<tr><td class="p-2.5 text-stone-700 font-medium">${r[0]}</td><td class="p-2.5 text-right text-stone-500">${r[1]}</td><td class="p-2.5 text-right text-stone-500 whitespace-nowrap">${r[2]}</td><td class="p-2.5 text-right font-bold text-stone-900 whitespace-nowrap">${formatUZS(r[3])}</td></tr>`).join('');
         }
 
         // SVG Visualizer Renderer (INOK Modular Drawing Engine)
@@ -1286,6 +1389,10 @@
             let darkColor = "#a88d67";
             if (style === 'white') { mainColor = "#ffffff"; darkColor = "#e2e8f0"; }
             if (style === 'dark') { mainColor = "#3a3630"; darkColor = "#1e1c19"; }
+            if (style === 'green') { mainColor = "#49634d"; darkColor = "#314735"; }
+            if (style === 'blue') { mainColor = "#315b7d"; darkColor = "#24445e"; }
+            if (style === 'beige') { mainColor = "#e7d6bd"; darkColor = "#c6aa83"; }
+            if (style === 'red') { mainColor = "#6f3436"; darkColor = "#4b2325"; }
 
             const countertopColor = state.countertop === 'kvars' ? '#0e7490' : state.countertop === 'mramor' ? '#475569' : '#d1d5db';
 
@@ -1382,26 +1489,13 @@
             const notes = document.getElementById('client-notes').value || 'Izohsiz';
 
             const total = document.getElementById('display-total-price').innerText;
-            const length = `${state.length} metr`;
-
+            const length = `${state.length.toFixed(1)} m`;
+            const height = `${state.height.toFixed(1)} m`;
             const text =
-                `📥 *INOK STUDIO — YANGI BUYURTMA SMETASI*
-
-👤 *Mijoz:* ${name}
-📞 *Tel:* ${phone}
-
-📐 *MEBEL O'LCHAMLARI & MATERIALLAR:*
-• Shakli: ${state.layout === 'straight' ? 'To\'g\'ri' : state.layout === 'l_shape' ? 'Burchakli (L)' : 'P-simon (U)'}
-• Uzunlik: ${length}
-• Fasad: ${document.getElementById('select-facade').options[document.getElementById('select-facade').selectedIndex].text}
-• Stoleshnitsa: ${document.getElementById('select-countertop').options[document.getElementById('select-countertop').selectedIndex].text}
-• Furnitura: ${document.getElementById('select-fittings').options[document.getElementById('select-fittings').selectedIndex].text}
-
-📍 *Manzil/Izoh:* ${notes}
-💰 *TAXMINIY SMETA SUMMASI:* *${total}*`;
+                `📥 *SHOD MEBEL — YANGI BUYURTMA SMETASI*\n\n👤 *Mijoz:* ${name}\n📞 *Tel:* ${phone}\n\n📐 *O'LCHAMLAR:*\n• Shakli: ${state.layout === 'straight' ? 'To\'g\'ri' : state.layout === 'l_shape' ? 'Burchakli (L)' : 'P-simon (U)'}\n• Uzunlik: ${length}\n• Balandlik: ${height}\n\n🧱 *MATERIALLAR:*\n• Fasad: ${document.getElementById('select-facade').options[document.getElementById('select-facade').selectedIndex].text}\n• Stoleshnitsa: ${document.getElementById('select-countertop').options[document.getElementById('select-countertop').selectedIndex].text}\n• Furnitura: ${document.getElementById('select-fittings').options[document.getElementById('select-fittings').selectedIndex].text}\n\n📍 *Manzil/Izoh:* ${notes}\n💰 *TAXMINIY SMETA:* *${total}*`;
 
             const encoded = encodeURIComponent(text);
-            window.open(`https://t.me/shodmebel_admin?text=${encoded}`, '_blank');
+            window.open(`https://t.me/${ADMIN_TELEGRAM_USERNAME}?text=${encoded}`, '_blank');
             closeTelegramModal();
         }
 
@@ -1429,6 +1523,10 @@
 
         // Initialize App on Load
         window.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('input-height-num').value = state.height.toFixed(1);
+            document.getElementById('input-height-slider').value = state.height;
+            const adminLink = document.getElementById('admin-telegram-link');
+            if (adminLink) adminLink.href = `https://t.me/${ADMIN_TELEGRAM_USERNAME}`;
             setLayout(state.layout);
             setCabinetColor(state.colorStyle);
             recalculatePrice();
